@@ -29,7 +29,7 @@ file.saveFileToLocal = async function (filename, folder, tempPath) {
 	await mkdirp(path.dirname(uploadPath));
 	await fs.promises.copyFile(tempPath, uploadPath);
 	return {
-		url: `/assets/uploads/${folder ? `${folder}/` : ''}${filename}`,
+		url: `/assets/uploads/` + (folder ? folder + '/' : '') + filename,
 		path: uploadPath,
 	};
 };
