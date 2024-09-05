@@ -28,8 +28,15 @@ file.saveFileToLocal = async function (filename, folder, tempPath) {
 	winston.verbose(`Saving file ${filename} to : ${uploadPath}`);
 	await mkdirp(path.dirname(uploadPath));
 	await fs.promises.copyFile(tempPath, uploadPath);
+
+	let url = '/assets/uploads/';
+	if (folder) {
+		url += `${folder}/`;
+	}
+	url += filename;
+
 	return {
-		url: `/assets/uploads/` + (folder ? folder + '/' : '') + filename,
+		url: url,
 		path: uploadPath,
 	};
 };
